@@ -52,6 +52,9 @@ saldo_mensal = (
 saldo_mensal["saldo"] = saldo_mensal.get("receita", 0) - saldo_mensal.get("despesa", 0)
 saldo_medio = saldo_mensal["saldo"].mean()
 
+# --- Projeção de reserva em 6 meses ---
+reserva_6m = saldo_medio * 6
+
 #---Montar relatório---
 
 linhas = [
@@ -65,10 +68,11 @@ linhas = [
     f"  Saldo         : R$ {saldo:,.2f}",
     "",
     "[ INSIGHTS ]",
-    f"  Maior gasto individual : R$ {maior_gasto['valor']:,.2f} ({maior_gasto['categoria']} em {maior_gasto['data'].strftime('%d/%m/%Y')})",
+    f"  Maior gasto individual           : R$ {maior_gasto['valor']:,.2f} ({maior_gasto['categoria']} em {maior_gasto['data'].strftime('%d/%m/%Y')})",
     f"  Categoria que mais cresceu (MoM) : {categoria_top} ({variacao_top:+.1f}%)",
     f"  Categoria com maior gasto total  : {top_categoria} — R$ {top_categoria_valor:,.2f} ({top_categoria_pct:.1f}% das despesas)",
-    f"  Saldo médio mensal : R$ {saldo_medio:,.2f}",
+    f"  Saldo médio mensal               : R$ {saldo_medio:,.2f}",
+    f"  Projeção de reserva em 6 meses   : R$ {reserva_6m:,.2f}",
     "",
     "=" * 50,
 ]
