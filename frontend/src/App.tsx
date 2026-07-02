@@ -1,6 +1,7 @@
 import { Header } from './components/layout/Header'
 import { KpiCard } from './components/metrics/KpiCard'
 import { monthlyAnalytics } from './data/mockData'
+import { MonthlyBarChart } from './components/charts/MonthlyBarChart'
 
 const totalReceita = monthlyAnalytics.reduce((acc, m) => acc + m.receita, 0)
 const totalDespesa = monthlyAnalytics.reduce((acc, m) => acc + m.despesa, 0)
@@ -18,7 +19,10 @@ export default function App() {
           <KpiCard titulo="Despesa Total" valor={totalDespesa} cor="vermelho" />
           <KpiCard titulo="Saldo" valor={totalSaldo} cor="azul" />
         </section>
-
+        <section className="bg-gray-900 rounded-xl p-6 border border-gray-800">
+          <h2 className="text-lg font-semibold mb-4">Receita x Despesa</h2>
+          <MonthlyBarChart dados={monthlyAnalytics} />
+        </section>
       </main>
     </div>
   )
